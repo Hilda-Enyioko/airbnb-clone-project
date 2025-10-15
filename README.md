@@ -47,3 +47,53 @@ Below are the key roles, their responsibilities, and their contribution to the p
 | Security Engineer            | Implementing and auditing security measures across the entire application and API.                                          | Protects sensitive data by implementing best practices for authentication, authorization, data encryption, input validation, and vulnerability management.                                     |
 | Technical Writer / Analyst   | Creating and maintaining all project documentation, including the README.md, feature specifications, and API documentation. | Ensures clear communication, maintainability, and knowledge transfer for all project artifacts, fulfilling key assessment requirements.                                                        |
 | Project Lead / Architect     | Defining the overall technical vision, architecture, and standards for the system.                                          | Makes high-level design choices, oversees technical risk mitigation, and ensures that all components (Django, MySQL, GraphQL) are integrated cohesively to meet the project's long-term goals. |
+
+## Database Design Overview (MySQL)
+
+The core functionality of the Airbnb Clone relies on a robust relational database structure. The design will focus on separating key business concepts into distinct entities to ensure data integrity and efficient querying. The primary database system used is MySQL.
+
+### Key Entities and Fields
+
+| Entity     | Description                                                        | Important Fields                                                                                                                               |
+| :--------- | :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Users      | Represents all registered platform users (hosts and guests).       | user_id (Primary Key), email (Unique), password_hash, first_name, is_host (Boolean)                                                            |
+| Properties | Represents a bookable lodging space listed by a host.              | property_id (Primary Key), host_id (Foreign Key to Users), title, description, price_per_night, location                                       |
+| Bookings   | Represents a confirmed reservation for a specific property.        | booking_id (Primary Key), guest_id (Foreign Key to Users), property_id (Foreign Key to Properties), check_in_date, check_out_date, total_price |
+| Reviews    | Represents feedback given by a guest on a property they stayed at. | review_id (Primary Key), booking_id (Foreign Key to Bookings), guest_id (Foreign Key to Users), rating (1-5), comment                          |
+| Payments   | Represents a transactional record for a booking.                   | payment_id (Primary Key), booking_id (Foreign Key to Bookings), amount, payment_method, transaction_status                                     |
+
+### Entity Relationships
+
+The entities are connected through Foreign Keys to establish the core business logic:
+
+1. Users and Properties (One-to-Many):
+
+a. A single User who is a host can list multiple Properties.
+
+b. A Property belongs to exactly one host (User).
+
+2. Users and Bookings (One-to-Many):
+
+a. A single User (guest) can make multiple Bookings.
+
+b. A Booking belongs to exactly one guest (User).
+
+3. Properties and Bookings (One-to-Many):
+
+a. A single Property can have multiple Bookings over time.
+
+b. A Booking is always associated with one Property.
+
+4. Bookings and Reviews (One-to-One / One-to-Zero-or-One):
+
+a. A Review is made after a stay, and is uniquely tied to one completed Booking.
+
+b. A Booking may have at most one Review.
+
+5. Bookings and Payments (One-to-Many / One-to-One):
+
+a. A single Booking can be associated with one or more Payments (e.g., an initial deposit and a final payment).
+
+b. A Payment is always associated with a single Booking.
+
+This structure ensures that every booking has a host, a guest, a property, and a record of payment, reflecting the real-world complexity of a platform like Airbnb.
