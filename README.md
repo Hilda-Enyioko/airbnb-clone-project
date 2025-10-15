@@ -97,3 +97,15 @@ a. A single Booking can be associated with one or more Payments (e.g., an initia
 b. A Payment is always associated with a single Booking.
 
 This structure ensures that every booking has a host, a guest, a property, and a record of payment, reflecting the real-world complexity of a platform like Airbnb.
+
+## Feature Breakdown
+
+The application is structured around several core modules that mirror the essential functionalities of a real-world booking platform. These features are driven by the backend logic and database design to ensure a seamless user experience.
+
+| Feature | Description and Contribution|
+| User Management & Authentication | This feature handles user registration, secure login/logout, and profile management for both guests and hosts. It ensures the security and identity of users by implementing token-based authentication (e.g., using Django Rest Framework features) and managing different roles (is_host boolean).|
+| Property Listing Management | This module allows registered hosts to Create, Read, Update, and Delete (CRUD) their property listings. It includes capturing critical data like location, pricing, availability, and descriptions, which is essential for inventory and search functionality.|
+| Booking & Reservation System | This is the central transaction feature where guests can select dates and reserve a property. It includes availability checks, applying pricing rules, and locking in the dates, forming the primary business workflow of the platform.|
+| Review and Rating System | Guests can leave detailed feedback and star ratings on properties after their stay is complete. This system builds trust and transparency on the platform by allowing future guests to make informed decisions and encouraging hosts to maintain high standards.|
+| Secure Payment Processing | This feature integrates with a third-party payment gateway to securely handle transactions for bookings. It ensures that payment details are protected and that the booking process can be finalized reliably with transaction status tracking and records kept in the Payments entity. |
+| API Development (Django/GraphQL) | The feature defines the structure and endpoints for how the frontend and backend communicate. Utilizing GraphQL allows for efficient data fetching, minimizing over-fetching and ensuring the platform is fast and scalable.|
