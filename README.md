@@ -110,9 +110,7 @@ The application is structured around several core modules that mirror the essent
 | Review and Rating System         | Guests can leave detailed feedback and star ratings on properties after their stay is complete. This system builds trust and transparency on the platform by allowing future guests to make informed decisions and encouraging hosts to maintain high standards.                                     |
 | Secure Payment Processing        | This feature integrates with a third-party payment gateway to securely handle transactions for bookings. It ensures that payment details are protected and that the booking process can be finalized reliably with transaction status tracking and records kept in the Payments entity.              |
 | API Development (Django/GraphQL) | The feature defines the structure and endpoints for how the frontend and backend communicate. Utilizing GraphQL allows for efficient data fetching, minimizing over-fetching and ensuring the platform is fast and scalable.                                                                         |
-
-API Security
-Securing the backend API is paramount for an application that handles sensitive user information and financial transactions. Given that our API serves as the gateway to the database, robust security measures are implemented to protect all data and business logic.
+| API Security                     | Securing the backend API is paramount for an application that handles sensitive user information and financial transactions. Given that our API serves as the gateway to the database, robust security measures are implemented to protect all data and business logic.                              |
 
 ## Key Security Measures
 
@@ -123,3 +121,29 @@ Securing the backend API is paramount for an application that handles sensitive 
 | Input Validation and Sanitization | All data received from clients (e.g., through form submissions) must be rigorously checked before processing or storing in the MySQL database. This prevents common attacks like SQL Injection and Cross-Site Scripting (XSS) by cleaning malicious input. |
 | Rate Limiting                     | This restricts the number of requests a single user or IP address can make to the API within a specific timeframe. It is crucial for defending against Denial-of-Service (DoS) attacks and brute-force password attempts.                                  |
 | Data Encryption                   | Sensitive data, both in transit and at rest, must be encrypted. Passwords will be securely hashed before storage, and all API traffic will be forced over HTTPS/SSL to encrypt communication.                                                              |
+
+## CI/CD Pipeline
+
+Continuous Integration/Continuous Delivery (CI/CD) is a fundamental practice for modern, scalable software development, ensuring that code changes are reliably and efficiently released.
+
+### What is CI/CD
+
+A CI/CD Pipeline is an automated series of steps that takes code changes from the developer's repository, tests them, and prepares them for deployment (CI - Continuous Integration) or automatically deploys them to production (CD - Continuous Delivery).
+
+### Why CI/CD is Important
+
+- Rapid Feedback: It automatically runs tests (unit, integration, security) every time a change is pushed, allowing developers to catch and fix bugs early, reducing technical debt.
+
+- Reliable Releases: Automation eliminates manual errors during the deployment process, ensuring that the application environment (built with Django, MySQL, etc.) is consistently configured and stable.
+
+- Collaboration: It streamlines the team workflow, making merging code from multiple contributors safe and predictable, which is essential for a large, collaborative project.
+
+### Tools for the Pipeline
+
+The following tools will be utilized to build and manage the automated CI/CD pipeline:
+
+- GitHub Actions: Serves as the primary automation engine. It will be configured to listen for events (e.g., pushes to the main branch) and trigger the entire pipeline (build, test, deploy).
+
+- Docker: Used to containerize the application and the MySQL database. This ensures that the environment is identical across development, testing, and production stages, eliminating "it works on my machine" issues.
+
+- Python Testing Frameworks (e.g., unittest/pytest): These tools, integrated into the CI process, ensure that the Django backend logic and API endpoints function correctly before deployment.
