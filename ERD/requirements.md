@@ -5,7 +5,7 @@ Create an Entity-Relationship (ER) diagram based on the Airbnb database specific
 
 ---
 
-## 🧱 Entities and Attributes  
+## Entities and Attributes  
 
 ### 1. **User**
 | Attribute | Type | Description |
@@ -123,7 +123,7 @@ Create an Entity-Relationship (ER) diagram based on the Airbnb database specific
 
 ---
 
-## 🧩 ER Diagram Description  
+## ER Diagram Description  
 
 Use **Draw.io** (or any ERD tool) to visualize:  
 
@@ -139,7 +139,7 @@ Use **Draw.io** (or any ERD tool) to visualize:
 
 ---
 
-## 🧠 Key Insights  
+## Key Insights  
 - The **User** entity is central — it connects to every other table.  
 - **Bookings** serve as the link between **Users**, **Properties**, and **Payments**.  
 - The **Message** table uses **self-referencing relationships** between users.  
@@ -147,7 +147,7 @@ Use **Draw.io** (or any ERD tool) to visualize:
 
 ---
 
-## ✅ Deliverables
+## Deliverables
 - **ER Diagram File:** Created using Draw.io  
 - **Saved Location:** `ERD/airbnb_erd.png`  
 - **Documentation:** `ERD/requirements.md` (this file)  
